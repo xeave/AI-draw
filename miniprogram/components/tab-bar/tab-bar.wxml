@@ -1,0 +1,4 @@
+<t-tab-bar value="{{value}}" bind:change="onChange" fixed="{{true}}" split="{{false}}">
+  <t-tab-bar-item value="home" icon="home">首页</t-tab-bar-item>
+  <t-tab-bar-item value="profile" icon="user">我的</t-tab-bar-item>
+</t-tab-bar>

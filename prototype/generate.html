@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI画廊 - 文生图</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        /* TDesign Blue */
+        :root {
+            --td-brand-color: #0052d9;
+            --td-brand-color-hover: #266fe8;
+            --td-brand-color-active: #003cab;
+            --td-brand-color-disabled: #bbd3fb;
+            --td-text-color-primary: rgba(0, 0, 0, 0.9);
+            --td-text-color-secondary: rgba(0, 0, 0, 0.6);
+            --td-text-color-placeholder: rgba(0, 0, 0, 0.4);
+            --td-bg-color-container: #fff;
+            --td-bg-color-page: #f3f3f3;
+        }
+        body {
+            background-color: var(--td-bg-color-page);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col">
+    <!-- Navigation Bar with Back Button -->
+    <div class="bg-white px-4 py-3 flex items-center justify-between border-b border-gray-100 relative shadow-sm z-10">
+        <div class="w-8 flex items-center">
+            <i class="ri-arrow-left-s-line text-2xl text-gray-900"></i>
+        </div>
+        <h1 class="text-lg font-semibold text-gray-900">文生图</h1>
+        <div class="w-8"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="flex-1 p-4 flex flex-col items-center justify-center">
+        <!-- Input Area -->
+        <div class="w-full bg-white rounded-lg p-4 shadow-sm mb-8">
+            <textarea 
+                class="w-full h-32 text-base text-gray-900 placeholder-gray-400 border-none outline-none resize-none" 
+                placeholder="请输入图片描述，例如：一只可爱的小猫"
+            ></textarea>
+            <div class="text-right text-xs text-gray-400 mt-2">0/200</div>
+        </div>
+
+        <!-- Generate Button -->
+        <button class="w-full py-3 rounded-lg font-medium text-white transition-colors duration-200 disabled:bg-blue-200 disabled:cursor-not-allowed" style="background-color: var(--td-brand-color);">
+            生成图片
+        </button>
+        
+        <!-- Hint text -->
+        <p class="mt-4 text-xs text-gray-400 text-center">输入文字描述，一键生成专属图片</p>
+    </div>
+</body>
+</html>

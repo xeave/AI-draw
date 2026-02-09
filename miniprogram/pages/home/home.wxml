@@ -1,0 +1,18 @@
+<view class="page-container">
+  <view class="grid-container">
+    <view class="card" wx:for="{{gallery}}" wx:key="id">
+      <t-image src="{{item.image}}" mode="aspectFill" width="100%" height="340rpx" class="card-img" />
+      <view class="card-info">
+        <view class="user-info">
+          <t-avatar size="small" shape="circle" icon="user" />
+          <text class="user-name">{{item.user}}</text>
+        </view>
+        <text class="desc">{{item.desc}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<t-fab icon="add" bind:click="onFabClick" aria-label="生成图片" style="right: 32rpx; bottom: 180rpx;" />
+
+<tab-bar value="home"></tab-bar>

@@ -1,0 +1,27 @@
+<view class="page-container">
+  <view class="input-section">
+    <t-textarea
+      t-class="prompt-input"
+      placeholder="请输入画面描述..."
+      maxlength="200"
+      disableDefaultPadding="{{true}}"
+      indicator
+      style="height: 300rpx;"
+      value="{{prompt}}"
+      bind:change="onInputChange"
+    />
+  </view>
+
+  <view class="action-section">
+    <t-button
+      theme="primary"
+      size="large"
+      block
+      loading="{{loading}}"
+      disabled="{{!prompt}}"
+      bind:tap="onGenerate"
+    >
+      立即生成
+    </t-button>
+  </view>
+</view>

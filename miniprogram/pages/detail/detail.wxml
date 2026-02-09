@@ -1,0 +1,11 @@
+<view class="page-container">
+  <view class="image-card">
+    <t-image src="{{imageUrl}}" mode="widthFix" width="100%" class="result-img" />
+    <view class="prompt-text">{{prompt}}</view>
+  </view>
+
+  <view class="action-bar">
+    <t-button theme="light" size="large" bind:tap="onRegenerate" class="action-btn">重新生成</t-button>
+    <t-button theme="primary" size="large" loading="{{saving}}" bind:tap="onSave" class="action-btn">保存图片</t-button>
+  </view>
+</view>

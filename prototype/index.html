@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI画廊 - 原型预览</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #1e1e1e;
+            font-family: sans-serif;
+        }
+        /* iPhone 15 Pro Frame Simulation */
+        .device-frame {
+            width: 393px;
+            height: 852px;
+            background: #000;
+            border-radius: 55px;
+            padding: 12px; /* Bezel */
+            box-shadow: 0 0 50px rgba(0,0,0,0.5), inset 0 0 10px rgba(255,255,255,0.1);
+            position: relative;
+            border: 4px solid #333; /* Titanium frame look */
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        /* Dynamic Island / Notch */
+        .dynamic-island {
+            width: 120px;
+            height: 35px;
+            background: #000;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 20px;
+            z-index: 50;
+        }
+
+        .screen-content {
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            border-radius: 44px; /* Screen corner radius */
+            overflow: hidden;
+            position: relative;
+        }
+        
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .label {
+            color: #aaa;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="min-h-screen p-10 overflow-x-auto">
+    
+    <div class="flex flex-col items-center">
+        <h1 class="text-3xl text-white font-bold mb-10">AI画廊 - 小程序原型</h1>
+        
+        <div class="flex flex-wrap justify-center gap-16">
+            
+            <!-- Home Page -->
+            <div class="flex flex-col items-center">
+                <div class="label">首页 (公共画廊)</div>
+                <div class="device-frame">
+                    <div class="dynamic-island"></div>
+                    <div class="screen-content">
+                        <iframe src="./home.html"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Generate Page -->
+            <div class="flex flex-col items-center">
+                <div class="label">文生图 (点击FAB后)</div>
+                <div class="device-frame">
+                    <div class="dynamic-island"></div>
+                    <div class="screen-content">
+                        <iframe src="./generate.html"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detail Page -->
+            <div class="flex flex-col items-center">
+                <div class="label">图片详情页</div>
+                <div class="device-frame">
+                    <div class="dynamic-island"></div>
+                    <div class="screen-content">
+                        <iframe src="./detail.html"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Page (Replaced Gallery) -->
+            <div class="flex flex-col items-center">
+                <div class="label">我的 (个人中心)</div>
+                <div class="device-frame">
+                    <div class="dynamic-island"></div>
+                    <div class="screen-content">
+                        <iframe src="./profile.html"></iframe>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+
+page {
+  --td-brand-color: #0052d9;
+  --td-brand-color-light: #e0ebff;
+  --td-brand-color-focus: #003cab;
+  --td-brand-color-disabled: #a8c5ff;
+  background-color: #f6f6f6;
+}

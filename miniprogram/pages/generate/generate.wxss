@@ -1,0 +1,10 @@
+.page-container {
+  padding: 32rpx;
+}
+.input-section {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.05);
+  margin-bottom: 48rpx;
+}

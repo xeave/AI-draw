@@ -1,0 +1,27 @@
+<view class="page-container">
+  <view class="header-section">
+    <block wx:if="{{isLoggedIn}}">
+      <t-avatar image="{{userInfo.avatarUrl}}" size="large" shape="circle" />
+      <text class="nickname">{{userInfo.nickName}}</text>
+    </block>
+    <block wx:else>
+      <t-avatar icon="user" size="large" shape="circle" />
+      <button class="login-btn" bindtap="onLogin">微信一键登录</button>
+    </block>
+  </view>
+
+  <view class="gallery-section">
+    <view class="section-title">我的作品</view>
+    <view class="grid-container">
+      <view class="card" wx:for="{{myGallery}}" wx:key="id">
+        <t-image src="{{item.image}}" mode="aspectFill" width="100%" height="340rpx" class="card-img" />
+        <view class="card-info">
+          <text class="desc">{{item.desc}}</text>
+          <text class="date">{{item.date}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<tab-bar value="profile"></tab-bar>

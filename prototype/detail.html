@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI画廊 - 详情</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :root {
+            --td-brand-color: #0052d9;
+            --td-bg-color-page: #000000; /* Dark background for image detail often looks better, but PRD says "Full screen display". Let's use white or black. TDesign usually light. Let's stick to light for consistency unless "Full screen" implies immersive. PRD says "Below image is text". So standard page flow. */
+            --td-bg-color-page-light: #f3f3f3;
+        }
+        body {
+            background-color: var(--td-bg-color-page-light);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col">
+    <!-- Navigation Bar -->
+    <div class="bg-white px-4 py-3 flex items-center justify-between border-b border-gray-100 relative shadow-sm z-10">
+        <div class="w-8 flex items-center">
+            <i class="ri-arrow-left-s-line text-2xl text-gray-900"></i>
+        </div>
+        <h1 class="text-lg font-semibold text-gray-900">生成结果</h1>
+        <div class="w-8"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="flex-1 flex flex-col bg-white">
+        <!-- Image Area -->
+        <div class="w-full aspect-square bg-gray-200 relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=1000&auto=format&fit=crop" alt="Generated Image" class="w-full h-full object-cover">
+        </div>
+        
+        <!-- Description -->
+        <div class="p-5 flex-1">
+            <h3 class="text-sm font-bold text-gray-500 mb-2">图片描述</h3>
+            <p class="text-base text-gray-900 leading-relaxed">一只可爱的白色小猫，坐在草地上晒太阳，眼神充满好奇，背景是模糊的绿树和蓝天。</p>
+        </div>
+
+        <!-- Buttons -->
+        <div class="p-5 pb-8 flex space-x-4 bg-white border-t border-gray-100">
+            <button class="flex-1 py-3 rounded-lg font-medium text-gray-700 bg-gray-100 active:bg-gray-200 transition-colors">
+                重新生成
+            </button>
+            <button class="flex-1 py-3 rounded-lg font-medium text-white transition-colors" style="background-color: var(--td-brand-color);">
+                保存图片
+            </button>
+        </div>
+    </div>
+</body>
+</html>

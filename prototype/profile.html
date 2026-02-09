@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI画廊 - 我的</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :root {
+            --td-brand-color: #0052d9;
+            --td-bg-color-page: #f3f3f3;
+        }
+        body {
+            background-color: var(--td-bg-color-page);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col">
+    <!-- Navigation Bar -->
+    <div class="bg-white px-4 py-3 flex items-center justify-center border-b border-gray-100 relative shadow-sm z-10">
+        <h1 class="text-lg font-semibold text-gray-900">我的</h1>
+    </div>
+
+    <!-- Content -->
+    <div class="flex-1 overflow-y-auto">
+        <!-- User Profile / Login Section -->
+        <div class="bg-white mb-3 p-8 flex flex-col items-center justify-center">
+            <!-- Unlogged in state: Login Button -->
+            <div class="flex flex-col items-center w-full">
+                <div class="w-20 h-20 bg-gray-200 rounded-full mb-4 flex items-center justify-center text-gray-400">
+                    <i class="ri-user-3-line text-4xl"></i>
+                </div>
+                <button class="w-4/5 py-3 rounded-lg font-medium text-white flex items-center justify-center space-x-2 transition-colors hover:bg-green-600 active:bg-green-700" style="background-color: #07c160;">
+                    <i class="ri-wechat-line text-xl"></i>
+                    <span>微信一键登录</span>
+                </button>
+                <p class="text-xs text-gray-400 mt-4">登录后查看我的作品</p>
+            </div>
+            
+            <!-- Logged in state (Hidden for prototype, can be swapped) -->
+            <!-- 
+            <div class="flex flex-col items-center">
+                <img src="https://ui-avatars.com/api/?name=User&background=0052d9&color=fff" class="w-20 h-20 rounded-full mb-3">
+                <h2 class="text-lg font-bold text-gray-900">微信用户</h2>
+            </div>
+            -->
+        </div>
+
+        <!-- Gallery Section Header -->
+        <div class="px-4 py-2">
+            <h3 class="text-sm font-bold text-gray-500">我的画廊</h3>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="p-3 pt-0">
+            <!-- Grid Layout -->
+            <div class="grid grid-cols-2 gap-3">
+                <!-- Item 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm">
+                    <div class="aspect-square bg-gray-200">
+                        <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-2">
+                        <p class="text-xs text-gray-600 truncate">一只可爱的白色小猫...</p>
+                        <p class="text-[10px] text-gray-400 mt-1">2023-10-27 10:30</p>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm">
+                    <div class="aspect-square bg-gray-200">
+                        <img src="https://images.unsplash.com/photo-1507146426996-ef05306b995a?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-2">
+                        <p class="text-xs text-gray-600 truncate">未来赛博朋克城市...</p>
+                        <p class="text-[10px] text-gray-400 mt-1">2023-10-26 15:45</p>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm">
+                    <div class="aspect-square bg-gray-200">
+                        <img src="https://images.unsplash.com/photo-1472457897821-70d3819a0e24?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-2">
+                        <p class="text-xs text-gray-600 truncate">宁静的湖边小屋...</p>
+                        <p class="text-[10px] text-gray-400 mt-1">2023-10-25 09:20</p>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm">
+                    <div class="aspect-square bg-gray-200">
+                        <img src="https://images.unsplash.com/photo-1570018144715-43110363d70a?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-2">
+                        <p class="text-xs text-gray-600 truncate">宇航员漫步火星...</p>
+                        <p class="text-[10px] text-gray-400 mt-1">2023-10-24 18:00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bg-white border-t border-gray-200 flex justify-around items-center pb-safe pt-2 pb-2">
+        <!-- Home Tab -->
+        <a href="#" class="flex flex-col items-center justify-center w-full py-1 text-gray-400">
+            <i class="ri-home-line text-2xl mb-0.5"></i>
+            <span class="text-[10px]">首页</span>
+        </a>
+        
+        <!-- My Tab (Active) -->
+        <a href="#" class="flex flex-col items-center justify-center w-full py-1 text-blue-600">
+            <i class="ri-user-3-fill text-2xl mb-0.5"></i>
+            <span class="text-[10px]">我的</span>
+        </a>
+    </div>
+</body>
+</html>

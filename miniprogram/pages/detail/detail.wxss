@@ -1,0 +1,29 @@
+.page-container {
+  padding: 32rpx;
+  display: flex;
+  flex-direction: column;
+}
+.image-card {
+  background: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.1);
+  margin-bottom: 48rpx;
+}
+.result-img {
+  width: 100%;
+  display: block;
+}
+.prompt-text {
+  padding: 24rpx;
+  font-size: 28rpx;
+  color: #333;
+  line-height: 1.5;
+}
+.action-bar {
+  display: flex;
+  gap: 24rpx;
+}
+.action-btn {
+  flex: 1;
+}
