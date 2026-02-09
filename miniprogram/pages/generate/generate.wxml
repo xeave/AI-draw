@@ -1,9 +1,10 @@
 <view class="page-container">
+  <view class="section-title">描述你想要的图片</view>
   <view class="input-section">
     <t-textarea
       t-class="prompt-input"
-      placeholder="请输入画面描述..."
-      maxlength="200"
+      placeholder="写实, 动漫, 动"
+      maxlength="1000"
       disableDefaultPadding="{{true}}"
       indicator
       style="height: 300rpx;"
@@ -12,16 +13,49 @@
     />
   </view>
 
+  <view class="tips-section">
+    <t-icon name="lightbulb" size="32rpx" color="#E3A300" />
+    <text class="tips-text">提示：越详细的描述可以生成越准确的图片。例如：'一只猫咪在草地上玩耍，阳光明媚，可爱温馨的动漫风格'</text>
+  </view>
+
+  <view class="tags-section">
+    <view 
+      class="tag-item" 
+      wx:for="{{tags}}" 
+      wx:key="*this"
+      bindtap="onTagClick"
+      data-tag="{{item}}"
+    >
+      {{item}}
+    </view>
+  </view>
+
   <view class="action-section">
     <t-button
       theme="primary"
       size="large"
       block
       loading="{{loading}}"
-      disabled="{{!prompt}}"
       bind:tap="onGenerate"
     >
-      立即生成
+      生成图片
     </t-button>
+  </view>
+
+  <view class="section-header">
+    <text class="section-title">不希望出现的内容</text>
+    <text class="optional-text">(可选)</text>
+  </view>
+  <view class="input-section negative-section">
+    <t-textarea
+      t-class="prompt-input"
+      placeholder="例如：不要文字、不要模糊、不要扭曲的人物"
+      maxlength="500"
+      disableDefaultPadding="{{true}}"
+      indicator
+      style="height: 200rpx;"
+      value="{{negativePrompt}}"
+      bind:change="onNegativeInputChange"
+    />
   </view>
 </view>

@@ -13,6 +13,6 @@
   </view>
 </view>
 
-<t-fab icon="add" bind:click="onFabClick" aria-label="生成图片" style="right: 32rpx; bottom: 180rpx;" />
+<t-fab icon="add" bind:click="onFabClick" aria-label="生成图片" style="right: 32rpx; bottom: 240rpx;" />
 
 <tab-bar value="home"></tab-bar>
