@@ -1,8 +1,16 @@
 <view class="page-container">
   <view class="header-section">
     <block wx:if="{{isLoggedIn}}">
-      <t-avatar image="{{userInfo.avatarUrl}}" size="large" shape="circle" />
-      <text class="nickname">{{userInfo.nickName}}</text>
+      <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+        <t-avatar image="{{userInfo.avatarUrl}}" size="large" shape="circle" />
+      </button>
+      <view class="user-info">
+        <input type="nickname" class="nickname-input" placeholder="点击输入昵称" value="{{userInfo.nickName}}" bind:change="onNicknameChange" bind:blur="onNicknameChange" />
+        <view class="edit-profile">
+          <t-icon name="edit" size="32rpx" color="#0052d9" />
+          <text class="edit-text">编辑资料</text>
+        </view>
+      </view>
     </block>
     <block wx:else>
       <t-avatar icon="user" size="large" shape="circle" />
@@ -12,14 +20,31 @@
 
   <view class="gallery-section">
     <view class="section-title">我的作品</view>
-    <view class="grid-container">
-      <view class="card" wx:for="{{myGallery}}" wx:key="id">
-        <t-image src="{{item.image}}" mode="aspectFill" width="100%" height="340rpx" class="card-img" />
-        <view class="card-info">
-          <text class="desc">{{item.desc}}</text>
-          <text class="date">{{item.date}}</text>
+    <block wx:if="{{myGallery.length > 0}}">
+      <view class="grid-container">
+        <view class="card" wx:for="{{myGallery}}" wx:key="id">
+          <t-image 
+            src="{{item.image}}" 
+            mode="aspectFill" 
+            width="100%" 
+            height="340rpx" 
+            class="card-img" 
+            data-url="{{item.image}}"
+            bind:tap="onPreviewImage"
+          />
+          <view class="card-info">
+            <text class="desc">{{item.desc}}</text>
+            <text class="date">{{item.date}}</text>
+          </view>
         </view>
       </view>
+    </block>
+    <view wx:else class="empty-state">
+      <view class="empty-icon-wrapper">
+        <t-icon name="info-circle" size="80rpx" color="#ccc" />
+      </view>
+      <text class="empty-text">您还没有创作任何图片</text>
+      <t-button theme="primary" size="large" class="create-btn" bind:tap="onStartCreate">开始创作</t-button>
     </view>
   </view>
 </view>

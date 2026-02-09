@@ -14,5 +14,9 @@ page {
   --td-brand-color-light: #e0ebff;
   --td-brand-color-focus: #003cab;
   --td-brand-color-disabled: #a8c5ff;
-  background-color: #f6f6f6;
+  
+  /* Cool Gradient Background */
+  background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
 }

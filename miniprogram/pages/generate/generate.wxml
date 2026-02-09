@@ -58,4 +58,16 @@
       bind:change="onNegativeInputChange"
     />
   </view>
+
+  <!-- 结果展示区域 -->
+  <view class="result-section" wx:if="{{isGenerating}}" catchtouchmove="true">
+    <view class="loading-card">
+      <view class="loading-icon-wrapper">
+        <view class="pulsing-circle"></view>
+        <t-loading theme="circular" size="80rpx" class="custom-loading" />
+      </view>
+      <text class="loading-title">AI 正在绘图中...</text>
+      <text class="loading-desc">每一幅画作都是独一无二的\n请耐心等待 10-30 秒</text>
+    </view>
+  </view>
 </view>

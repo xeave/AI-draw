@@ -5,19 +5,63 @@ Page({
     saving: false
   },
   onLoad(options: any) {
-    this.setData({
-      prompt: decodeURIComponent(options.prompt || ''),
-      // Use a random image or a fixed one for demo
-      imageUrl: 'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=800'
-    });
+    if (options.imageUrl) {
+      this.setData({
+        imageUrl: decodeURIComponent(options.imageUrl)
+      });
+    }
+    
+    if (options.prompt) {
+      this.setData({
+        prompt: decodeURIComponent(options.prompt)
+      });
+    }
   },
-  onSave() {
+  async onSave() {
+    const userInfo = wx.getStorageSync('userInfo');
+    if (!userInfo) {
+      wx.showToast({ title: '请先登录', icon: 'none' });
+      // Optionally navigate to profile to login
+      return;
+    }
+
     this.setData({ saving: true });
-    // Simulate save
-    setTimeout(() => {
+    
+    try {
+      const { imageUrl, prompt } = this.data;
+      
+      const res: any = await wx.cloud.callFunction({
+        name: 'publish_post',
+        data: {
+          imageUrl,
+          prompt,
+          userInfo
+        }
+      });
+
+      if (res.result.code === 0) {
+        wx.showToast({ title: '发布成功', icon: 'success' });
+        // Navigate to profile
+        setTimeout(() => {
+            wx.redirectTo({ url: '/pages/profile/profile' });
+        }, 1500);
+      } else {
+        // Check for collection not exist error
+        if (res.result.message && res.result.message.includes('-502005')) {
+          throw new Error('请先在云开发控制台创建 images 集合');
+        }
+        throw new Error(res.result.message);
+      }
+
+    } catch (err: any) {
+      console.error('Publish failed', err);
+      wx.showToast({ 
+        title: err.message || '发布失败', 
+        icon: 'none' 
+      });
+    } finally {
       this.setData({ saving: false });
-      wx.showToast({ title: '已保存到相册', icon: 'success' });
-    }, 1000);
+    }
   },
   onRegenerate() {
     wx.navigateBack();
