@@ -116,11 +116,10 @@ Page({
 
   onPreviewImage(e: any) {
     const current = e.currentTarget.dataset.src;
-    const urls = this.data.gallery.map((item: any) => item.image);
     
     wx.previewImage({
       current,
-      urls
+      urls: [current]
     });
   },
 

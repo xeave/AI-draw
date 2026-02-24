@@ -185,10 +185,9 @@ Page({
   // 预览图片
   onPreviewImage(e: any) {
     const current = e.currentTarget.dataset.url;
-    const urls = this.data.myGallery.map((item: any) => item.image);
     wx.previewImage({
       current,
-      urls
+      urls: [current]
     });
   },
 
@@ -203,25 +202,60 @@ Page({
   onChooseAvatar(e: any) {
     const { avatarUrl } = e.detail;
     
-    wx.showLoading({ title: '上传头像...' });
+    wx.showLoading({ title: '处理中...' });
+
+    const uploadImage = (filePath: string) => {
+      wx.showLoading({ title: '上传头像...' });
+      // 获取文件扩展名
+      const ext = filePath.split('.').pop() || 'jpg';
+      // 上传图片到云存储
+      const cloudPath = `avatars/${Date.now()}-${Math.floor(Math.random() * 1000)}.${ext}`;
+      wx.cloud.uploadFile({
+        cloudPath: cloudPath,
+        filePath: filePath,
+        success: (res) => {
+          const fileID = res.fileID;
+          const userInfo = { ...this.data.userInfo, avatarUrl: fileID };
+          
+          this.setData({ userInfo });
+          this.updateUserInfo(userInfo);
+          wx.hideLoading();
+        },
+        fail: (err) => {
+          wx.hideLoading();
+          console.error('Upload failed', err);
+          wx.showToast({ title: '上传失败', icon: 'error' });
+        }
+      });
+    };
     
-    // 上传图片到云存储
-    const cloudPath = `avatars/${Date.now()}-${Math.floor(Math.random() * 1000)}.png`;
-    wx.cloud.uploadFile({
-      cloudPath: cloudPath,
+    // 检查图片大小
+    wx.getFileSystemManager().getFileInfo({
       filePath: avatarUrl,
       success: (res) => {
-        const fileID = res.fileID;
-        const userInfo = { ...this.data.userInfo, avatarUrl: fileID };
-        
-        this.setData({ userInfo });
-        this.updateUserInfo(userInfo);
-        wx.hideLoading();
+        const isLarge = res.size > 1024 * 1024; // 1MB
+        if (isLarge) {
+          wx.showLoading({ title: '压缩中...' });
+          wx.compressImage({
+            src: avatarUrl,
+            quality: 60,
+            success: (compressRes) => {
+              uploadImage(compressRes.tempFilePath);
+            },
+            fail: (err) => {
+              console.error('Compression failed', err);
+              // 压缩失败则尝试上传原图
+              uploadImage(avatarUrl);
+            }
+          });
+        } else {
+          uploadImage(avatarUrl);
+        }
       },
       fail: (err) => {
-        wx.hideLoading();
-        console.error('Upload failed', err);
-        wx.showToast({ title: '上传失败', icon: 'error' });
+        console.error('Get file info failed', err);
+        // 获取信息失败则尝试直接上传
+        uploadImage(avatarUrl);
       }
     });
   },
